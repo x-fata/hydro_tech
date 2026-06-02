@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import Portfolio from './components/Portfolio';
 import Upload from './components/Upload';
 import Dashboard from './components/Dashboard';
+import ProjectDetails from './components/ProjectDetails';
 
 function App() {
   // State management to switch between pages independently
   const [currentTab, setCurrentTab] = useState('portfolio');
+  
+  // State ya kudhibiti ukurasa wa ndani wa mradi bila kuvuruga tab nyengine
+  const [selectedProject, setSelectedProject] = useState(null);
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#f8f9fa', color: '#212529' }}>
@@ -26,7 +30,7 @@ function App() {
         
         <div style={{ display: 'flex', gap: '12px' }}>
           <button 
-            onClick={() => setCurrentTab('portfolio')}
+            onClick={() => { setCurrentTab('portfolio'); setSelectedProject(null); }}
             style={{ 
               background: 'none', border: 'none', fontSize: '0.8rem', fontWeight: '600',
               color: currentTab === 'portfolio' ? '#1a1a1a' : '#6c757d',
@@ -56,7 +60,13 @@ function App() {
 
       {/* Render Independent Interfaces Dynamically */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        {currentTab === 'portfolio' && <Portfolio />}
+        {currentTab === 'portfolio' && (
+          selectedProject ? (
+            <ProjectDetails onBack={() => setSelectedProject(null)} />
+          ) : (
+            <Portfolio onViewProject={(id) => setSelectedProject(id)} />
+          )
+        )}
         {currentTab === 'upload' && <Upload />}
         {currentTab === 'dashboard' && <Dashboard />}
       </div>
