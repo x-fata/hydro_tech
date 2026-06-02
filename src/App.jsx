@@ -5,60 +5,57 @@ import Dashboard from './components/Dashboard';
 import ProjectDetails from './components/ProjectDetails';
 
 function App() {
-  // State management to switch between pages independently
   const [currentTab, setCurrentTab] = useState('portfolio');
-  
-  // State ya kudhibiti ukurasa wa ndani wa mradi bila kuvuruga tab nyengine
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#f8f9fa', color: '#212529' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#f1f3f5', fontFamily: 'system-ui, sans-serif' }}>
       
-      {/* Universal Sticky Navigation */}
+      {/* Universal Premium Navigation Menu */}
       <nav style={{ 
         display: 'flex', 
         justifyContent: 'space-between', 
         alignItems: 'center',
-        padding: '15px 20px', 
-        background: '#ffffff', 
-        borderBottom: '1px solid #dee2e6',
+        padding: '16px 20px', 
+        background: '#2b303a', 
+        borderBottom: '1px solid #4a5262',
         position: 'sticky',
         top: 0,
-        zIndex: 100
+        zIndex: 100,
+        boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
       }}>
-        <h2 style={{ color: '#1a1a1a', fontSize: '1.1rem', fontWeight: '700', letterSpacing: '1px', margin: 0 }}>ARCH_STUDIO</h2>
+        <h2 style={{ color: '#ffffff', fontSize: '1.1rem', fontWeight: '300', letterSpacing: '2px', margin: 0 }}>
+          HYDRO_STUDIO
+        </h2>
         
-        <div style={{ display: 'flex', gap: '12px' }}>
-          <button 
-            onClick={() => { setCurrentTab('portfolio'); setSelectedProject(null); }}
-            style={{ 
-              background: 'none', border: 'none', fontSize: '0.8rem', fontWeight: '600',
-              color: currentTab === 'portfolio' ? '#1a1a1a' : '#6c757d',
-              borderBottom: currentTab === 'portfolio' ? '2px solid #1a1a1a' : 'none',
-              padding: '5px 0', cursor: 'pointer', outline: 'none'
-            }}>Portfolio</button>
-          
-          <button 
-            onClick={() => setCurrentTab('upload')}
-            style={{ 
-              background: 'none', border: 'none', fontSize: '0.8rem', fontWeight: '600',
-              color: currentTab === 'upload' ? '#1a1a1a' : '#6c757d',
-              borderBottom: currentTab === 'upload' ? '2px solid #1a1a1a' : 'none',
-              padding: '5px 0', cursor: 'pointer', outline: 'none'
-            }}>Upload</button>
-
-          <button 
-            onClick={() => setCurrentTab('dashboard')}
-            style={{ 
-              background: 'none', border: 'none', fontSize: '0.8rem', fontWeight: '600',
-              color: currentTab === 'dashboard' ? '#1a1a1a' : '#6c757d',
-              borderBottom: currentTab === 'dashboard' ? '2px solid #1a1a1a' : 'none',
-              padding: '5px 0', cursor: 'pointer', outline: 'none'
-            }}>Dashboard</button>
+        <div style={{ display: 'flex', gap: '8px', background: '#343a40', padding: '4px', borderRadius: '10px' }}>
+          {[
+            { id: 'portfolio', label: 'Portfolio' },
+            { id: 'upload', label: 'Upload' },
+            { id: 'dashboard', label: 'Dashboard' }
+          ].map((tab) => (
+            <button 
+              key={tab.id}
+              onClick={() => { setCurrentTab(tab.id); if(tab.id === 'portfolio') setSelectedProject(null); }}
+              style={{ 
+                background: currentTab === tab.id ? '#4a5262' : 'none', 
+                border: 'none', 
+                fontSize: '0.75rem', 
+                fontWeight: '700',
+                color: '#ffffff',
+                padding: '6px 14px', 
+                borderRadius: '8px',
+                cursor: 'pointer', 
+                outline: 'none',
+                transition: 'all 0.2s'
+              }}>
+              {tab.label}
+            </button>
+          ))}
         </div>
       </nav>
 
-      {/* Render Independent Interfaces Dynamically */}
+      {/* Render Pages Dynamically */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         {currentTab === 'portfolio' && (
           selectedProject ? (
@@ -68,7 +65,7 @@ function App() {
           )
         )}
         {currentTab === 'upload' && <Upload />}
-        {currentTab === 'dashboard' && <Dashboard />}
+        {currentTab === 'dashboard' && <Dashboard onViewProject={(id) => { setCurrentTab('portfolio'); setSelectedProject(id); }} />}
       </div>
 
     </div>

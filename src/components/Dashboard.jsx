@@ -1,72 +1,94 @@
 import React from 'react';
 
-function Portfolio({ onViewProject }) {
+function Dashboard({ onViewProject }) {
+  // Mock Data ya maendeleo ya jumla ya miradi
+  const stats = [
+    { title: 'TOTAL PLATFORMS', value: '3 Active Grid' },
+    { title: 'LIKES INDEXED', value: '171 Total' },
+    { title: 'AVG INTEGRATION', value: '63.3%' }
+  ];
+
+  const ongoingLogs = [
+    { id: 'eco-villa', name: 'Modern Eco-Villa', status: 'Completed', date: 'Just now' },
+    { id: 'pavilion', name: 'The Pavilion Center', status: 'In Progress', date: '2 hours ago' },
+    { id: 'smart-solar-station', name: 'Smart Solar Plant Grid', status: 'Concept', date: 'Yesterday' }
+  ];
+
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', backgroundColor: '#f1f3f5' }}>
       
-      {/* Hero Section */}
-      <div style={{ padding: '40px 20px', background: '#1a1a1a', color: '#ffffff', textAlign: 'center' }}>
-        <h1 style={{ fontSize: '1.6rem', fontWeight: '300', letterSpacing: '2px', marginBottom: '10px', margin: 0 }}>
-          MINIMALIST ARCHITECTURE
+      {/* Dashboard Top Banner */}
+      <div style={{ 
+        padding: '40px 20px', 
+        background: 'linear-gradient(135deg, #2b303a 0%, #4a5262 100%)', 
+        color: '#ffffff', 
+        borderBottomRightRadius: '20px',
+        borderBottomLeftRadius: '20px',
+        boxShadow: '0 4px 10px rgba(0,0,0,0.05)'
+      }}>
+        <h1 style={{ fontSize: '1.4rem', fontWeight: '300', letterSpacing: '2px', margin: 0 }}>
+          CONTROL DASHBOARD
         </h1>
-        <p style={{ fontSize: '0.85rem', color: '#adb5bd', maxWidth: '280px', margin: '10px auto 0', lineHeight: '1.5' }}>
-          Explore blueprints and professional 3D renderings.
+        <p style={{ fontSize: '0.75rem', color: '#e2e8f0', margin: '4px 0 0 0' }}>
+          Real-time analytics engine and structural configuration node.
         </p>
       </div>
-      
-      {/* Search & Filter Interface */}
-      <div style={{ padding: '15px 20px', display: 'flex', gap: '10px' }}>
-        <input 
-          type="text" 
-          placeholder="Search projects..." 
-          style={{ flex: 1, padding: '10px 12px', fontSize: '0.85rem', border: '1px solid #ced4da', borderRadius: '4px', outline: 'none' }} 
-        />
-        <select style={{ padding: '10px', fontSize: '0.85rem', border: '1px solid #ced4da', borderRadius: '4px', background: '#fff', outline: 'none' }}>
-          <option>All Types</option>
-          <option>Residential</option>
-          <option>Commercial</option>
-        </select>
-      </div>
 
-      {/* Project Gallery Preview */}
-      <div style={{ padding: '0 20px 25px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
-        <h3 style={{ fontSize: '0.95rem', letterSpacing: '1px', margin: '10px 0 5px 0', color: '#343a40' }}>RECENT WORKS</h3>
+      <div style={{ padding: '20px 15px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
         
-        {/* Project Card 1 */}
-        <div style={{ background: '#ffffff', borderRadius: '4px', border: '1px solid #e9ecef', overflow: 'hidden' }}>
-          <div style={{ height: '140px', background: '#dee2e6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', color: '#6c757d' }}>
-            [ Modern Eco-Villa Blueprint ]
-          </div>
-          <div style={{ padding: '12px' }}>
-            <h4 style={{ fontSize: '0.85rem', margin: '0 0 4px 0', color: '#212529' }}>Modern Eco-Villa</h4>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-              <span style={{ fontSize: '0.75rem', color: '#6c757d' }}>Residential • 2026</span>
-              <span style={{ fontSize: '0.75rem', color: '#1a1a1a', fontWeight: '600' }}>❤️ 12 Likes</span>
+        {/* Metric Cards Grid - High Complexity Grid View */}
+        <div style={{ display: 'flex', gap: '10px' }}>
+          {stats.map((stat, i) => (
+            <div key={i} style={{ 
+              flex: 1, background: '#ffffff', padding: '14px 10px', 
+              borderRadius: '12px', border: '1px solid #e2e8f0',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.02)'
+            }}>
+              <span style={{ fontSize: '0.6rem', fontWeight: '700', color: '#94a3b8', display: 'block', letterSpacing: '0.5px' }}>
+                {stat.title}
+              </span>
+              <span style={{ fontSize: '0.95rem', fontWeight: '800', color: '#1e293b', display: 'block', marginTop: '4px' }}>
+                {stat.value}
+              </span>
             </div>
-            <button 
-              onClick={() => onViewProject('eco-villa')}
-              style={{ width: '100%', padding: '8px', background: '#1a1a1a', color: '#fff', border: 'none', borderRadius: '4px', fontSize: '0.75rem', fontWeight: '600', cursor: 'pointer' }}>
-              VIEW DETAILS
-            </button>
-          </div>
+          ))}
         </div>
 
-        {/* Project Card 2 */}
-        <div style={{ background: '#ffffff', borderRadius: '4px', border: '1px solid #e9ecef', overflow: 'hidden' }}>
-          <div style={{ height: '140px', background: '#e9ecef', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', color: '#6c757d' }}>
-            [ Urban Pavilion Concept ]
-          </div>
-          <div style={{ padding: '12px' }}>
-            <h4 style={{ fontSize: '0.85rem', margin: '0 0 4px 0', color: '#212529' }}>The Pavilion Center</h4>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-              <span style={{ fontSize: '0.75rem', color: '#6c757d' }}>Commercial • Concept</span>
-              <span style={{ fontSize: '0.75rem', color: '#1a1a1a', fontWeight: '600' }}>❤️ 45 Likes</span>
-            </div>
-            <button 
-              onClick={() => onViewProject('pavilion')}
-              style={{ width: '100%', padding: '8px', background: '#6c757d', color: '#fff', border: 'none', borderRadius: '4px', fontSize: '0.75rem', fontWeight: '600', cursor: 'pointer' }}>
-              VIEW DETAILS
-            </button>
+        {/* Live Tracking Status Logs Section */}
+        <div style={{ 
+          background: '#ffffff', borderRadius: '16px', padding: '20px 15px',
+          border: '1px solid #e2e8f0', boxShadow: '0 4px 15px rgba(0,0,0,0.02)'
+        }}>
+          <h3 style={{ fontSize: '0.85rem', fontWeight: '700', color: '#475569', margin: '0 0 15px 0', letterSpacing: '0.5px' }}>
+            PROJECT MATRIX STATUS LOGS
+          </h3>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {ongoingLogs.map((log) => (
+              <div key={log.id} style={{ 
+                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                padding: '12px', background: '#f8fafc', borderRadius: '10px', border: '1px solid #f1f5f9'
+              }}>
+                <div>
+                  <span style={{ fontSize: '0.8rem', fontWeight: '700', color: '#1e293b', display: 'block' }}>
+                    {log.name}
+                  </span>
+                  <span style={{ fontSize: '0.65rem', color: '#94a3b8' }}>
+                    Updated {log.date}
+                  </span>
+                </div>
+                
+                <button 
+                  onClick={() => onViewProject(log.id)}
+                  style={{
+                    background: '#4a5262', color: '#fff', border: 'none', borderRadius: '6px',
+                    fontSize: '0.65rem', fontWeight: '700', padding: '6px 10px', cursor: 'pointer'
+                  }}
+                >
+                  MANAGE
+                </button>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -75,4 +97,4 @@ function Portfolio({ onViewProject }) {
   );
 }
 
-export default Portfolio;
+export default Dashboard;
