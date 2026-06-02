@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Portfolio() {
+function Portfolio({ onViewProject }) {
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
       
@@ -39,24 +39,15 @@ function Portfolio() {
           </div>
           <div style={{ padding: '12px' }}>
             <h4 style={{ fontSize: '0.85rem', margin: '0 0 4px 0', color: '#212529' }}>Modern Eco-Villa</h4>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
               <span style={{ fontSize: '0.75rem', color: '#6c757d' }}>Residential • 2026</span>
               <span style={{ fontSize: '0.75rem', color: '#1a1a1a', fontWeight: '600' }}>❤️ 12 Likes</span>
             </div>
-          </div>
-        </div>
-
-        {/* Project Card 2 */}
-        <div style={{ background: '#ffffff', borderRadius: '4px', border: '1px solid #e9ecef', overflow: 'hidden' }}>
-          <div style={{ height: '140px', background: '#e9ecef', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', color: '#6c757d' }}>
-            [ Urban Pavilion Concept ]
-          </div>
-          <div style={{ padding: '12px' }}>
-            <h4 style={{ fontSize: '0.85rem', margin: '0 0 4px 0', color: '#212529' }}>The Pavilion Center</h4>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '0.75rem', color: '#6c757d' }}>Commercial • Concept</span>
-              <span style={{ fontSize: '0.75rem', color: '#1a1a1a', fontWeight: '600' }}>❤️ 45 Likes</span>
-            </div>
+            <button 
+              onClick={() => { if(typeof onViewProject === 'function') onViewProject('eco-villa'); }}
+              style={{ width: '100%', padding: '8px', background: '#1a1a1a', color: '#fff', border: 'none', borderRadius: '4px', fontSize: '0.75rem', fontWeight: '600', cursor: 'pointer' }}>
+              VIEW DETAILS
+            </button>
           </div>
         </div>
 
