@@ -14,7 +14,7 @@ function App() {
         flexWrap: 'wrap',
         gap: '10px'
       }}>
-        <h2 style={{ color: '#1a1a1a', fontSize: '1.2rem', fontWeight: '700', letterSpacing: '1px', margin: 0 }}>ARCH_STUDIO</h2>
+        <h2 style={{ color: '#1a1a1a', fontSize: '1.2rem', fontWeight: '700', letterSpacing: '1px', margin: 0 }}>Hydro_Tech</h2>
         <div style={{ display: 'flex', gap: '15px' }}>
           <a href="#" style={{ textDecoration: 'none', color: '#495057', fontWeight: '600', fontSize: '0.85rem' }}>Portfolio</a>
           <a href="#" style={{ textDecoration: 'none', color: '#495057', fontWeight: '600', fontSize: '0.85rem' }}>Dashboard</a>
