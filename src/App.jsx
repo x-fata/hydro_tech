@@ -25,7 +25,7 @@ function App() {
         boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
       }}>
         <h2 style={{ color: '#ffffff', fontSize: '1.1rem', fontWeight: '300', letterSpacing: '2px', margin: 0 }}>
-          HYDRO_STUDIO
+        HYDRO_TECH
         </h2>
         
         <div style={{ display: 'flex', gap: '8px', background: '#343a40', padding: '4px', borderRadius: '10px' }}>
