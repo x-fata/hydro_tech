@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth'; // 1. Import Auth listener
+import { auth } from './services/firebaseConfig';    // 2. Import Auth instance
 import Portfolio from './components/Portfolio';
 import Upload from './components/Upload';
 import Dashboard from './components/Dashboard';
@@ -7,6 +9,16 @@ import ProjectDetails from './components/ProjectDetails';
 function App() {
   const [currentTab, setCurrentTab] = useState('portfolio');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [user, setUser] = useState(null); // State ya mtumiaji aliyepo
+
+  // 3. Complex Authentication Listener (Hii inafuatilia login state ya mtumiaji)
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      console.log("Auth State Changed: ", currentUser ? "User Logged In" : "User Logged Out");
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#f1f3f5', fontFamily: 'system-ui, sans-serif' }}>
